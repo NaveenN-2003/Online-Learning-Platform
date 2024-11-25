@@ -55,6 +55,9 @@ Install dependencies:
 bash
 Copy code 
 
+## Project demo video
+[https://drive.google.com/file/d/1KRU5xXmJ9a--lMHIf9RLyxEeBj6rb08D/view](https://drive.google.com/file/d/1KRU5xXmJ9a--lMHIf9RLyxEeBj6rb08D/view)
+
 ### Set Up Environment Variables
 
 Create a `.env` file in the `backend` directory and add the following:
@@ -79,12 +82,4 @@ npm start
 Open your browser and navigate to:
 [http://localhost:5000](http://localhost:5000)
 
-API Endpoints
-Method	Endpoint	Description
-POST	/api/auth/register	Register a new user
-POST	/api/auth/login	Log in a user
-GET	/api/courses	Get all courses
-POST	/api/courses	Create a new course (teacher only)
-PUT	/api/courses/:id	Update a course (taecher only)
-DELETE	/api/courses/:id	Delete a course (Admin only)
 
