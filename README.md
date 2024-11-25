@@ -53,36 +53,28 @@ Follow these steps to run the project locally:
 Install dependencies:
 
 bash
-Copy code
-# Backend
+Copy code 
+
+### Set Up Environment Variables
+
+Create a `.env` file in the `backend` directory and add the following:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+PORT=5000
+
+### Run the application:
+
 ```bash
+# Backend
 cd backend
 npm install
-
-
-## Set Up Environment Variables
-
-env code:
-
-- MONGO_URI=your_mongodb_connection_string
-- 0JWT_SECRET=your_jwt_secret_key
-- PORT=5000
-
-Run the application:
-
-bash
-Copy code
-
-# Backend
-```bash
-cd backend
-npm install
-
 
 # Frontend
-```bash
 cd frontend
 npm start
+
 
 Open your browser and navigate to:
 [http://localhost:5000](http://localhost:5000)
