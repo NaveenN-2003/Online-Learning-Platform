@@ -1,4 +1,4 @@
-# Udemy Clone - Online Learning Platform
+# Udemy - Online Learning Platform
 
 An online learning platform built using the MERN stack (MongoDB, Express, React, Node.js). This platform enables administrators to manage courses efficiently and allows students to explore, learn, and track their progress seamlessly.
 
