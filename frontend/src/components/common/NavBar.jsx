@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import { UserContext } from '../../App';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const NavBar = ({ setSelectedComponent }) => {
    const user = useContext(UserContext);
+   const navigate = useNavigate(); // Hook to navigate programmatically
 
    if (!user) {
       return null;
@@ -20,6 +21,10 @@ const NavBar = ({ setSelectedComponent }) => {
       setSelectedComponent(component);
    };
 
+   const handleCoursesClick = () => {
+      navigate('/allCourses'); // Navigate to the AllCourses page
+   };
+
    return (
       <Navbar expand="lg" style={{ backgroundColor: '#ffffff', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)' }}>
          <Container fluid>
@@ -31,6 +36,7 @@ const NavBar = ({ setSelectedComponent }) => {
                <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
                   <NavLink
                      onClick={() => handleOptionClick('home')}
+                     Link to={"/"}
                      className="nav-link"
                      style={{ color: '#2a73cc', fontWeight: '500' }}
                   >
@@ -45,15 +51,7 @@ const NavBar = ({ setSelectedComponent }) => {
                         Add Course
                      </NavLink>
                   )}
-                  {user.userData.type === 'Admin' && (
-                     <NavLink
-                        onClick={() => handleOptionClick('courses')}
-                        className="nav-link"
-                        style={{ color: '#2a73cc', fontWeight: '500' }}
-                     >
-                        Courses
-                     </NavLink>
-                  )}
+                  
                   {user.userData.type === 'Student' && (
                      <NavLink
                         onClick={() => handleOptionClick('enrolledcourses')}

@@ -13,7 +13,9 @@ const {
   sendCourseContentController,
   completeSectionController,
   sendAllCoursesUserController,
+  deleteUserController
 } = require("../controllers/userControllers");
+const { deleteUserController } = require("../controllers/adminController");
 
 const router = express.Router();
 
@@ -53,6 +55,8 @@ router.post('/enrolledcourse/:courseid', authMiddleware, enrolledCourseControlle
 router.get('/coursecontent/:courseid', authMiddleware, sendCourseContentController)
 
 router.post('/completemodule', authMiddleware, completeSectionController)
+
+router.post('deleteuser/:userid',authMiddleware,deleteUserController)
 
 router.get('/getallcoursesuser', authMiddleware, sendAllCoursesUserController)
 

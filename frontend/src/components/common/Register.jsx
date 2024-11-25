@@ -4,7 +4,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Container, Nav } from 'react-bootstrap';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import axiosInstance from './AxiosInstance';
@@ -14,10 +13,10 @@ const Register = () => {
    const navigate = useNavigate();
    const [selectedOption, setSelectedOption] = useState('Select User Type');
    const [data, setData] = useState({
-      name: "",
-      email: "",
-      password: "",
-      type: "",
+      name: '',
+      email: '',
+      password: '',
+      type: '',
    });
 
    const handleSelect = (eventKey) => {
@@ -32,20 +31,27 @@ const Register = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      if (!data?.name || !data?.email || !data?.password || !data?.type) {
-         return alert("Please fill all fields");
+      if (!data.name || !data.email || !data.password || !data.type) {
+         return alert('Please fill all fields');
       } else {
-         axiosInstance.post('/api/user/register', data)
+         axiosInstance
+            .post('/api/user/register', data)
             .then((response) => {
                if (response.data.success) {
                   alert(response.data.message);
-                  navigate('/login');
+                  if (data.type === 'Admin') {
+                     navigate('/adminhome');
+                  } else if (data.type === 'Teacher') {
+                     navigate('/allcourses');
+                  } else {
+                     navigate('/dashboard');
+                  }
                } else {
                   console.log(response.data.message);
                }
             })
             .catch((error) => {
-               console.log("Error", error);
+               console.log('Error', error);
             });
       }
    };
@@ -55,20 +61,19 @@ const Register = () => {
          <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
                <Navbar.Brand>
-                  <h2 style={{ color: "#ff5722", fontWeight: "bold" }}>Udemy</h2>
+                  <h2 style={{ color: '#ff5722', fontWeight: 'bold' }}>Udemy</h2>
                </Navbar.Brand>
                <Navbar.Toggle aria-controls="navbarScroll" />
                <Navbar.Collapse id="navbarScroll">
-                  <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                  </Nav>
+                  <Nav className="me-auto my-2 my-lg-0" navbarScroll></Nav>
                   <Nav>
-                     <Link style={{ margin: "0 10px", color: "#ff5722", fontWeight: "bold" }} to={'/'}>
+                     <Link style={{ margin: '0 10px', color: '#ff5722', fontWeight: 'bold' }} to={'/'}>
                         Home
                      </Link>
-                     <Link style={{ margin: "0 10px", color: "#ff5722", fontWeight: "bold" }} to={'/login'}>
+                     <Link style={{ margin: '0 10px', color: '#ff5722', fontWeight: 'bold' }} to={'/login'}>
                         Login
                      </Link>
-                     <Link style={{ margin: "0 10px", color: "#ff5722", fontWeight: "bold" }} to={'/register'}>
+                     <Link style={{ margin: '0 10px', color: '#ff5722', fontWeight: 'bold' }} to={'/register'}>
                         Register
                      </Link>
                   </Nav>
@@ -153,14 +158,14 @@ const Register = () => {
                            style: { background: '#fff', borderRadius: '5px' },
                         }}
                      />
-                     <Dropdown className='my-3'>
+                     <Dropdown className="my-3">
                         <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
                            {selectedOption}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                           <Dropdown.Item onClick={() => handleSelect("Student")}>Student</Dropdown.Item>
-                           <Dropdown.Item onClick={() => handleSelect("Teacher")}>Teacher</Dropdown.Item>
-                           <Dropdown.Item onClick={() => handleSelect("Admin")}>Admin</Dropdown.Item> {/* Added Admin */}
+                           <Dropdown.Item onClick={() => handleSelect('Student')}>Student</Dropdown.Item>
+                           <Dropdown.Item onClick={() => handleSelect('Teacher')}>Teacher</Dropdown.Item>
+                           <Dropdown.Item onClick={() => handleSelect('Admin')}>Admin</Dropdown.Item>
                         </Dropdown.Menu>
                      </Dropdown>
                      <Box mt={1} mb={1} sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -178,17 +183,12 @@ const Register = () => {
                            Register
                         </Button>
                      </Box>
-                     <Grid container justifyContent="center" alignItems="center" mt={1}>
-                        <Grid item>
-                           Already have an account?{' '}
-                           <Link
-                              style={{ color: "#ff5722", fontWeight: "bold" }}
-                              to={'/login'}
-                           >
-                              Sign In
-                           </Link>
-                        </Grid>
-                     </Grid>
+                     <Box sx={{ textAlign: 'center', marginTop: 1 }}>
+                        Already have an account?{' '}
+                        <Link style={{ color: '#ff5722', fontWeight: 'bold' }} to={'/login'}>
+                           Sign In
+                        </Link>
+                     </Box>
                   </Box>
                </Box>
             </Container>

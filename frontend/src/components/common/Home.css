@@ -1,129 +1,193 @@
-/* Ensure the counter is behind the content */
-.background-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1; /* Puts the counter behind the text */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  animation: counterAnimation 1s ease-in-out infinite;
-}
-
-.counter-text {
-  font-size: 2rem;
-  color: #FF9900; /* Updated to match Udemy branding */
-  margin: 10px 0;
-  animation: counterTextAnimation 5s linear infinite;
-}
-
-/* Animation for counter background effect */
-@keyframes counterAnimation {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Continuous counter text animation */
-@keyframes counterTextAnimation {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 /* Main container styling */
 .first-container {
-  position: relative;
-  min-height: 100vh;
-  background-color: #1d1d1d; /* Updated to a dark background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px; /* Added padding for better spacing */
-}
-
-/* Content area */
-.content-home {
-  max-width: 600px;
-  color: #ffffff; /* Light text for contrast */
-  z-index: 1; /* Ensures content is above the counter */
-}
-
-/* Ensures content is above background */
-.z-index-1 {
-  z-index: 1;
-}
-
-/* Ensure the navbar is sticky on top */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 2; /* Keeps navbar above other content */
-  background-color: #333; /* Dark navbar background */
-}
-
-/* Styling for buttons */
-button {
-  background-color: #FF9900; /* Match Udemy's brand color */
-  border: none;
-}
-
-button:hover {
-  background-color: #e68a00; /* Slight hover effect */
-}
-
-/* Styling for the testimonial section */
-.testimonials {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-}
-
-.testimonial-item {
-  background-color: #333;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 300px;
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.testimonial-item p {
-  font-style: italic;
-}
-
-.testimonial-item strong {
-  margin-top: 10px;
-  display: block;
-  font-weight: bold;
-}
-
-/* Benefits section styling */
-.benefits-list {
-  list-style-type: none;
-  padding: 0;
-  text-align: center;
-}
-
-.benefits-list li {
-  margin: 10px 0;
-  font-size: 1.1rem;
-  color: #ffffff;
-}
+    position: relative;
+    min-height: 100vh; /* Updated to a dark background */
+    background-image: url('C:\Users\Roshan Elesius\Desktop\Online-Learning-Platform\OnlineLearningPlatform\frontend\viteproject\src\components\common\Elearning_platform.jpg'); /* Add your background image URL here */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px; /* Added padding for better spacing */
+    color: white;
+  }
+  
+  /* Ensure the counter is behind the content */
+  .background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Puts the counter behind the text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: counterAnimation 1s ease-in-out infinite;
+  }
+  
+  /* Counter text styling */
+  .counter-text {
+    font-size: 2rem;
+    color: #FF9900; /* Updated to match Udemy branding */
+    margin: 10px 0;
+    animation: counterTextAnimation 5s linear infinite;
+  }
+  
+  /* Animation for counter background effect */
+  @keyframes counterAnimation {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  /* Continuous counter text animation */
+  @keyframes counterTextAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Content area */
+  .content-home {
+    max-width: 800px;
+    color: #ffffff; /* Light text for contrast */
+    z-index: 1; /* Ensures content is above the counter */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Title section styling */
+  .title-section {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #FF9900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Navbar styling */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Keeps navbar above other content */
+    background-color: #333; /* Dark navbar background */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+  }
+  
+  .navbar a:hover {
+    background-color: #444;
+    border-radius: 5px;
+  }
+  
+  /* Button styling */
+  button {
+    background-color: #FF9900; /* Match Udemy's brand color */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #e68a00; /* Slight hover effect */
+  }
+  
+  /* Testimonial section styling */
+  .testimonials {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+  }
+  
+  .testimonial-item {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 300px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .testimonial-item p {
+    font-style: italic;
+  }
+  
+  .testimonial-item strong {
+    margin-top: 10px;
+    display: block;
+    font-weight: bold;
+  }
+  
+  /* Benefits section styling */
+  .benefits-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .benefits-list li {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    color: #ffffff;
+  }
+  
+  /* New Section: Call to Action */
+  .call-to-action {
+    background-color: #FF9900;
+    color: #fff;
+    padding: 40px 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 40px auto;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .call-to-action h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .call-to-action button {
+    background-color: #333;
+    color: #FF9900;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .call-to-action button:hover {
+    background-color: #444;
+    color: #fff;
+  }
+  

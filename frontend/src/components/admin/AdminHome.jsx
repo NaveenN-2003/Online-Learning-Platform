@@ -4,40 +4,40 @@ import axiosInstance from '../common/AxiosInstance';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.primary.main,  // Header background color
-      color: theme.palette.common.white,
+      backgroundColor: theme.palette.primary.main, // Header background color
+      color: theme.palette.common.white, // White text color
       fontWeight: 'bold',
       fontSize: 16,
-      borderBottom: '2px solid #f1f1f1',  // Light border for header
+      borderBottom: '2px solid #f1f1f1', // Light border for header
    },
    [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
-      padding: '16px 12px',  // Larger padding for better spacing
-      borderBottom: '1px solid #ddd',  // Lighter bottom border for rows
+      padding: '16px 12px', // Larger padding for better spacing
+      borderBottom: '1px solid #ddd', // Light gray border
    },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
    '&:hover': {
-      backgroundColor: theme.palette.grey[200],  // Light gray hover effect
+      backgroundColor: theme.palette.grey[200], // Light gray hover effect
    },
    '&:last-child td, &:last-child th': {
       border: 0,
    },
 }));
 
-const AdminHome = () => {
-   const [allUsers, setAllUsers] = useState([]);
+const AllCourses = () => {
+   const [allCourses, setAllCourses] = useState([]);
 
-   const allUsersList = async () => {
+   const allCoursesList = async () => {
       try {
-         const res = await axiosInstance.get('api/admin/getallusers', {
+         const res = await axiosInstance.get('api/admin/getallcourses', {
             headers: {
-               "Authorization": `Bearer ${localStorage.getItem("token")}`,
+               Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
          });
          if (res.data.success) {
-            setAllUsers(res.data.data);
+            setAllCourses(res.data.data);
          } else {
             alert(res.data.message);
          }
@@ -47,25 +47,25 @@ const AdminHome = () => {
    };
 
    useEffect(() => {
-      allUsersList();
+      allCoursesList();
    }, []);
 
-   const deleteUser = async (userId) => {
-      const confirmation = confirm('Are you sure you want to delete this user?');
+   const deleteCourse = async (courseId) => {
+      const confirmation = window.confirm('Are you sure you want to delete this course?');
       if (!confirmation) {
          return;
       }
       try {
-         const res = await axiosInstance.delete(`api/user/deleteuser/${userId}`, {
+         const res = await axiosInstance.delete(`api/user/deletecourse/${courseId}`, {
             headers: {
                Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
          });
          if (res.data.success) {
             alert(res.data.message);
-            allUsersList();
+            allCoursesList();
          } else {
-            alert("Failed to delete the user");
+            alert('Failed to delete the course');
          }
       } catch (error) {
          console.log('An error occurred:', error);
@@ -77,51 +77,49 @@ const AdminHome = () => {
          <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
                <TableRow>
-                  <StyledTableCell>User ID</StyledTableCell>
-                  <StyledTableCell align="left">User Name</StyledTableCell>
-                  <StyledTableCell align="left">Email</StyledTableCell>
-                  <StyledTableCell align="left">Type</StyledTableCell>
-                  <StyledTableCell align="left">Action</StyledTableCell>
+                  <StyledTableCell>Course ID</StyledTableCell>
+                  <StyledTableCell align="center">Course Name</StyledTableCell>
+                  <StyledTableCell align="left">Course Educator</StyledTableCell>
+                  <StyledTableCell align="center">Course Category</StyledTableCell>
+                  <StyledTableCell align="left">Course Price</StyledTableCell>
+                  <StyledTableCell align="left">Course Sections</StyledTableCell>
+                  <StyledTableCell align="left">Enrolled Students</StyledTableCell>
+                  <StyledTableCell align="center">Action</StyledTableCell>
                </TableRow>
             </TableHead>
             <TableBody>
-               {allUsers.length > 0 ? (
-                  allUsers.map((user) => (
-                     <StyledTableRow key={user._id}>
-                        <StyledTableCell component="th" scope="row">
-                           {user._id}
-                        </StyledTableCell>
-                        <StyledTableCell component="th" scope="row">
-                           {user.name}
-                        </StyledTableCell>
-                        <StyledTableCell component="th" scope="row">
-                           {user.email}
-                        </StyledTableCell>
-                        <StyledTableCell component="th" scope="row">
-                           {user.type}
-                        </StyledTableCell>
-                        <StyledTableCell component="th" scope="row">
+               {allCourses.length > 0 ? (
+                  allCourses.map((course) => (
+                     <StyledTableRow key={course._id}>
+                        <StyledTableCell>{course._id}</StyledTableCell>
+                        <StyledTableCell align="center">{course.C_title}</StyledTableCell>
+                        <StyledTableCell align="left">{course.C_educator}</StyledTableCell>
+                        <StyledTableCell align="center">{course.C_categories}</StyledTableCell>
+                        <StyledTableCell align="left">${course.C_price}</StyledTableCell>
+                        <StyledTableCell align="left">{course.sections.length}</StyledTableCell>
+                        <StyledTableCell align="left">{course.enrolled}</StyledTableCell>
+                        <StyledTableCell align="center">
                            <Button
-                              onClick={() => deleteUser(user._id)}
+                              onClick={() => deleteCourse(course._id)}
                               size="small"
                               sx={{
-                                 fontSize: '1.5rem',  // Increased button size for better visibility
-                                 padding: '6px 10px',  // Adjusted padding for the emoji button
-                                 color: '#333',  // Dark color for delete button
+                                 color: '#f44336', // Red color for delete button
+                                 fontSize: '0.875rem',
+                                 padding: '4px 8px',
                                  '&:hover': {
-                                    backgroundColor: '#e8e8e8',  // Light gray hover effect
+                                    backgroundColor: '#fdecea', // Light red hover effect
                                  },
                               }}
                            >
-                              🗑️
+                              Delete
                            </Button>
                         </StyledTableCell>
                      </StyledTableRow>
                   ))
                ) : (
                   <StyledTableRow>
-                     <StyledTableCell colSpan={5} align="center">
-                        No users found
+                     <StyledTableCell colSpan={8} align="center">
+                        No courses found
                      </StyledTableCell>
                   </StyledTableRow>
                )}
@@ -131,4 +129,4 @@ const AdminHome = () => {
    );
 };
 
-export default AdminHome;
+export default AllCourses;

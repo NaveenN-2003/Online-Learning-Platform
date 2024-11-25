@@ -35,8 +35,7 @@ const Login = () => {
 
                   localStorage.setItem("token", res.data.token);
                   localStorage.setItem("user", JSON.stringify(res.data.userData));
-                  
-                  // Check if the user is an admin
+                   // Check if the user is an admin
                   const userType = res.data.userData.type; // Assuming 'type' is the field that determines the user role
                   
                   if (userType === 'admin') {
@@ -87,7 +86,7 @@ const Login = () => {
             </Container>
          </Navbar>
 
-         <div className="first-container">
+         <div className="first-container" style={{ backgroundImage: 'url(path_to_your_image)', backgroundSize: 'cover' }}>
             <Container
                component="main"
                style={{
@@ -95,7 +94,9 @@ const Login = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   minHeight: '100vh',
-                  background: '#f7f7f7',
+                  background: 'transparent', // Transparent background
+                  position: 'relative',
+                  zIndex: 2,
                }}
             >
                <Box
@@ -105,7 +106,7 @@ const Login = () => {
                      flexDirection: 'column',
                      alignItems: 'center',
                      padding: '20px',
-                     background: '#ffffff',
+                     background: 'rgba(255, 255, 255, 0.7)', // Semi-transparent background for readability
                      boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
                      borderRadius: '12px',
                      width: '400px',
