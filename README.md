@@ -55,36 +55,37 @@ Install dependencies:
 bash
 Copy code
 # Backend
+```bash
 cd backend
 npm install
 
-# Frontend
-cd frontend
-npm install
-Set up environment variables:
 
-Create a .env file in the backend directory and add the following:
-env
-Copy code
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-PORT=5000
+## Set Up Environment Variables
+
+env code:
+
+- MONGO_URI=your_mongodb_connection_string
+- 0JWT_SECRET=your_jwt_secret_key
+- PORT=5000
+
 Run the application:
 
 bash
 Copy code
+
 # Backend
+```bash
 cd backend
-npm start
+npm install
+
 
 # Frontend
+```bash
 cd frontend
 npm start
-Open your browser and navigate to:
 
-arduino
-Copy code
-http://localhost:3000
+Open your browser and navigate to:
+[http://localhost:5000](http://localhost:5000)
 
 API Endpoints
 Method	Endpoint	Description
@@ -94,5 +95,4 @@ GET	/api/courses	Get all courses
 POST	/api/courses	Create a new course (teacher only)
 PUT	/api/courses/:id	Update a course (taecher only)
 DELETE	/api/courses/:id	Delete a course (Admin only)
-csharp
-Copy code
+
