@@ -56,27 +56,28 @@ const deleteCourseController = async (req, res) => {
 };
 
 const deleteUserController = async (req, res) => {
-  const { userid } = req.params; // Use the correct parameter name
-  try {
-    // Attempt to delete the course by its ID
-    const user = await userSchema.findByIdAndDelete({ _id: userid });
-
-    // Check if the course was found and deleted successfully
-    if (user) {
+    const { userid } = req.params; // Use the correct parameter name
+    try {
+      // Attempt to delete the course by its ID
+      const user = await userSchema.findByIdAndDelete({ _id: userid });
+  
+      // Check if the course was found and deleted successfully
+      if (user) {
+        res
+          .status(200)
+          .send({ success: true, message: "User deleted successfully" });
+      } else {
+        res.status(404).send({ success: false, message: "User not found" });
+      }
+    } catch (error) {
+      console.error("Error in deleting user:", error);
       res
-        .status(200)
-        .send({ success: true, message: "User deleted successfully" });
-    } else {
-      res.status(404).send({ success: false, message: "User not found" });
+        .status(500)
+        .send({ success: false, message: "Failed to delete course" });
     }
-  } catch (error) {
-    console.error("Error in deleting user:", error);
-    res
-      .status(500)
-      .send({ success: false, message: "Failed to delete course" });
-  }
-};
-
+  };
+  
+  
 module.exports = {
   getAllUsersController,
   getAllCoursesController,
